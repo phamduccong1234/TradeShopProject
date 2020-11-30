@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"TradeShop.messages"}],"uuid":"61f375a537fe47f2a30457c4548dbd77"}

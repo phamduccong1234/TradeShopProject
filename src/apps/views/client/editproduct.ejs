@@ -1,0 +1,185 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <base href="/assets/client/" />
+  <title>TradeShop | Edit Post</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/cufon-yui.js"></script>
+  <script type="text/javascript" src="js/arial.js"></script>
+  <script type="text/javascript" src="js/cuf_run.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.15.4/bootstrap-table.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="main">
+    <div class="main_resize">
+      <div class="header">
+        <div class="logo">
+          <h1><a href="#"><span>Trade</span>Shop</a></h1>
+        </div>
+        <div class="search">
+          <form method="get" id="search" action="/search">
+            <input class="form-control" name="searchKey" type="search" placeholder="Search..." aria-label="Search">
+            <button class="btn btn-danger" type="submit">Search</button>
+          </form>
+          <!--/searchform -->
+          <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+        <div class="menu_nav">
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/addproduct">Post Prouct</a></li>
+            <li><a href="/user-profile-<%= user._id%>">User Profile</a></li>
+            <li><a href="/chat">Chat</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+          <div class="clr"></div>
+        </div>
+        <div class="hbg"><img src="images/tradeshop.jpg" width="923" height="291" alt="" /></div>
+      </div>
+      <div class="content">
+        <div class="content_bg">
+          <div class="mainbar">
+            <div class="article">
+              <h2><span>Edit</span> Product</h2>
+              <div class="clr"></div>
+              <form method="post" id="editproduct" enctype="multipart/form-data">
+                <% if(error){%>
+                <div class="alert alert-danger">
+                  <%=error%>
+                </div>
+                <%}%>
+                <ol>
+                <li>
+                  <label>Name</label>
+                  <input id="prd_name" name="prd_name" class="text" type="text" value="<%= product.prd_name %>"/>
+                </li>
+                <li>
+                    <label>Category</label>
+                    <select name="cate_id">
+                        <% categories.forEach((category)=>{ %>
+                            <option value="<%=category._id%> <% if(product.cate_id.toString() === category.id) {%> selected <%}%>"><%=category.cate_name%>
+                            </option>
+                            <%})%>
+                    </select>
+                </li>
+                <li>
+                    <label>Status</label>
+                    <select name="prd_status">
+                      <option value="1" <% if(product.prd_status ===1) {%> selected <%}%>>On Stock</option>
+                      <option value="0" <% if(product.prd_status ===0) {%> selected <%}%>>Sold</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Quality of Product</label>
+                    <select name="prd_quality" >
+                      <option value="<%= product.prd_quality %>"><%= product.prd_quality %></option>
+                      <option value="100% - New">New - 100%</option>
+                      <option value="99% - Used but look like new">Used but look like new - 99%</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Price</label>
+                    <input id="prd_price" name="prd_price" class="text" type="text" value="<%= product.prd_price %>"/>
+                </li>
+                <li>
+                    <label>Type of Product</label>
+                    <select name="prd_type" >
+                      <option value="<%= product.prd_type %>"><%= product.prd_type %></option>
+                      <option value="Sound - Speaker">Sound - Speaker</option>
+                      <option value="Screen - TV">Screen - TV</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Description</label>
+                    <textarea id="prd_detail" name="prd_detail" rows="8" cols="50" ><%= product.prd_detail %></textarea>
+                </li>
+                <div class="form-row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Picture of Product</label>
+                      <input id="prd_img" name="prd_img" type="file">
+                      <br>
+                      <div>
+                        <img width="200" height="220" id="img_preview"
+                          src="/assets/client/images/Product/<%= product.prd_img %>">
+                      </div>
+                    </div>
+                    <li>
+                      <input class="btn btn--radius-2 btn--blue-2" type="submit" value="Submit">
+                    </li>
+                  </div>
+                  </ol>
+              </form>
+            </div>
+          </div>
+          <div class="sidebar">
+            <div class="gadget">
+              <h2 class="star"><span>Sidebar</span> Menu</h2>
+              <div class="clr"></div>
+              <ul class="sb_menu">
+                <% for(let menu of menus) { %>
+                <li><a href="/category-<%= menu._id %>"><%= menu.cate_name %></a></li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+          <div class="clr"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fbg">
+      <div class="fbg_resize">
+        <div class="col c1">
+          <h2><span>About Website</span></h2>
+          <p>The site aims to create an environment for buying and selling second hand goods between buyers and sellers.
+            Mainly listening devices and video transmitters.</p>
+        </div>
+        <div class="col c2">
+          <h2><span>Contact Support</span></h2>
+          <p>Email: admin@gmail.com</p>
+          <p>Phone: 0355373838</p>
+          <p>Address: Trung Kinh Street, Ha Noi</p>
+        </div>
+        <div class="col c3">
+          <img src="images/logo.png" width="290" height="130" alt="" />
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        const prd_img = $('#prd_img')
+        prd_img.on("change", function (e) {
+
+          const file = e.target.files[0]
+
+          const reader = new FileReader()
+          reader.onload = function (event) {
+            console.log(event.target.result)
+            $("#img_preview").attr("src", event.target.result)
+          }
+          if (file) {
+            reader.readAsDataURL(file)
+          }
+
+        })
+      })
+    </script>
+  </div>
+
+</body>
+
+
+</html>

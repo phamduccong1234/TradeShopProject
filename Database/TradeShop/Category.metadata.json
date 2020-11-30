@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"TradeShop.Category"},{"v":{"$numberInt":"2"},"unique":true,"key":{"cate_name":{"$numberInt":"1"}},"name":"cate_name_1","ns":"TradeShop.Category","background":true}],"uuid":"3df3b2f177a7430b818822b553bfe679"}

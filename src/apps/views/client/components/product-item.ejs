@@ -1,0 +1,10 @@
+
+    <div class="article">
+      <h2><span><%=product.prd_name%></span></h2>
+      <div class="clr"></div>
+      <p class="post-data"><span class="date"><%=product.cate_id%></span> &nbsp;|&nbsp; Posted by <%=product.user_id.user_name%> &nbsp;|&nbsp; <%=product.prd_price%> vnd &nbsp;|&nbsp; <%=product.prd_type%>
+          <a href="/product-detail-<%=product._id%>"><img src="/assets/client/images/Product/<%= product.prd_img %>" width="613" height="193" alt="" /></a>
+      <p><%=product.prd_detail%></p>
+      <p class="spec"> <a href="/product-detail-<%=product._id%>" class="rm fl">View detail</a></p>
+      <div class="clr"></div>
+    </div>

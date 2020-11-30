@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/assets/chat/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="chat.css" rel="stylesheet" id="bootstrap-css">
+    <!------ Include the above in your HEAD tag ---------->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+</head>
+<body style="background-color: rgb(255, 0, 0);">
+
+<div id="frame">
+	<div id="sidepanel">
+		<div id="profile">
+			<div class="wrap">
+				<img src="/assets/client/images/User/<%= user.user_img %>" alt="" style="height: 60px;width: 60px;" />
+				<p><%= user.user_name %></p>
+			</div>
+		</div><br>
+		<div id="contacts">
+			<ul>
+				<% for (let room of rooms){ %>
+					<li class="contact" id="<%= room._id %>">
+						<div class="wrap">
+							<span class="contact-status online"></span>
+							<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+							<div class="meta">
+								<p class="name"><%= room.users.filter(user => user._id.toString() !== user_id).map(user => user.user_name).join(",") %></p>
+								<p class="preview"></p>
+							</div>
+						</div>
+					</li>
+				<% } %>
+			</ul>
+		</div>
+		<div id="bottom-bar">
+			<a href="/home"><button id="addcontact"><i class="fa fa-user fa-fw" aria-hidden="true"></i> <span>Back to Home</span></button></a>
+		</div>
+	</div>
+	<div class="content">
+		<div class="contact-profile">
+			
+		</div>
+		<div class="messages">
+			<ul id="list-messages">
+			</ul>
+		</div>
+		<div class="message-input">
+			<div class="wrap">
+			<input type="text" id="input_send_mess" placeholder="Write your message..." />
+			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+			<button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="bootstrap.min.js"></script>
+<script src="jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var current_room_id = '<%= room ? room.id : null %>';
+	var current_user_id = '<%= user_id %>';
+	
+</script>
+<script src="chat.js"></script>
+
+</body>
+</html>

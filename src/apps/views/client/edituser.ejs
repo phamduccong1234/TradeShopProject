@@ -1,0 +1,162 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <base href="/assets/client/" />
+  <title>TradeShop | Edit User Profile</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/cufon-yui.js"></script>
+  <script type="text/javascript" src="js/arial.js"></script>
+  <script type="text/javascript" src="js/cuf_run.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.15.4/bootstrap-table.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="main">
+    <div class="main_resize">
+      <div class="header">
+        <div class="logo">
+          <h1><a href="#"><span>Trade</span>Shop</a></h1>
+        </div>
+        <div class="search">
+          <form method="get" id="search" action="/search">
+            <input class="form-control" name="searchKey" type="search" placeholder="Search..." aria-label="Search">
+            <button class="btn btn-danger" type="submit">Search</button>
+          </form>
+          <!--/searchform -->
+          <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+        <div class="menu_nav">
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/addproduct">Post Prouct</a></li>
+            <li><a href="/user-profile-<%= user._id%>">User Profile</a></li>
+            <li><a href="/chat">Chat</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+          <div class="clr"></div>
+        </div>
+        <div class="hbg"><img src="images/tradeshop.jpg" width="923" height="291" alt="" /></div>
+      </div>
+      <div class="content">
+        <div class="content_bg">
+          <div class="mainbar">
+            <div class="article">
+              <h2><span>Edit</span> User Profile</h2>
+              <div class="clr"></div>
+              <form method="post" id="postproduct" enctype="multipart/form-data">
+                <% if(error){%>
+                <div class="alert alert-danger">
+                  <%=error%>
+                </div>
+                <%}%>
+                <ol>
+                <li>
+                  <label>Email</label>
+                  <input id="user_mail" name="user_mail" class="text" type="text" value="<%= user.user_mail %>" disabled/>
+                </li>
+                <li>
+                  <label>Name</label>
+                  <input id="user_name" name="user_name" class="text" type="text" value="<%= user.user_name %>" />
+                </li>
+                <li>
+                  <label>Password</label>
+                  <input id="user_pass" name="user_pass" class="text" type="password" value="<%= user.user_pass %>" />
+                </li>
+                <li>
+                  <label>Phone</label>
+                  <input id="user_phone" name="user_phone" class="text" type="text" value="<%= user.user_phone %>" />
+                </li>
+                <li>
+                  <label>Address</label>
+                  <input id="user_add" name="user_add" class="text" type="text" value="<%= user.user_add %>" />
+                </li>
+                <div class="form-row">
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Ảnh sản phẩm</label>
+
+                      <input id="user_img" name="user_img" type="file">
+                      <br>
+                      <div>
+                        <img width="200" height="220" id="img_preview"
+                          src="/assets/client/images/User/<%= user.user_img %>">
+                      </div>
+                    </div>
+                    <li>
+                      <input class="btn btn--radius-2 btn--blue-2 btn-primary" type="submit" value="Submit">
+                    </li>
+                  </div>
+                  </ol>
+              </form>
+            </div>
+          </div>
+          <div class="sidebar">
+            <div class="gadget">
+              <h2 class="star"><span>Sidebar</span> Menu</h2>
+              <div class="clr"></div>
+              <ul class="sb_menu">
+                <% for(let menu of menus) { %>
+                <li><a href="/category-<%= menu._id %>"><%= menu.cate_name %></a></li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+          <div class="clr"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fbg">
+      <div class="fbg_resize">
+        <div class="col c1">
+          <h2><span>About Website</span></h2>
+          <p>The site aims to create an environment for buying and selling second hand goods between buyers and sellers.
+            Mainly listening devices and video transmitters.</p>
+        </div>
+        <div class="col c2">
+          <h2><span>Contact Support</span></h2>
+          <p>Email: admin@gmail.com</p>
+          <p>Phone: 0355373838</p>
+          <p>Address: Trung Kinh Street, Ha Noi</p>
+        </div>
+        <div class="col c3">
+          <img src="images/logo.png" width="290" height="130" alt="" />
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        const user_img = $('#user_img')
+        user_img.on("change", function (e) {
+
+          const file = e.target.files[0]
+
+          const reader = new FileReader()
+          reader.onload = function (event) {
+            console.log(event.target.result)
+            $("#img_preview").attr("src", event.target.result)
+          }
+          if (file) {
+            reader.readAsDataURL(file)
+          }
+
+        })
+      })
+    </script>
+  </div>
+
+</body>
+
+
+</html>
